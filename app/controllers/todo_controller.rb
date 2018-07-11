@@ -17,8 +17,9 @@ class TodoController < ApplicationController
         @due_today = @incomplete_todos.where(duedate: Date.today)
         @due_tomorrow = @incomplete_todos.where(duedate: Date.tomorrow)
         @due_later = Array.new
-        
-        @incomplete_todos.each do |todo|
+        @incompleted_todos = Todo.where(status: nil)
+        @past_todos = @incomplete_todos.where(duedate: Date.yesterday)
+        @incomplete_todos.each do |todo| 
           unless todo.duedate == Date.today || todo.duedate == Date.tomorrow
             @due_later << todo
           end

@@ -1,6 +1,6 @@
-<h1>Workshop Todo List
-</h1>
+<h1 align="center">Workshop Todo List</h1>
 
+<a id="new_todo_button"href="/todo/new">Add a new To-do</a>
 <h3>Due today - <%= Date.today.strftime("%A %B %d") %></h3>
 <ul>
 <% @due_today.each do |todo| %>
@@ -32,6 +32,25 @@
 </ul>
 
 
+<h3>past To-do</h3>
+<ul>
+<% @past_todos.each do |todo| %>
+  <li>
+    <a href="/todo/show/<%= todo.id%>"><%= todo.description%></a>
+    <span><%= todo.duedate.strftime("%A - %B %d")%></span>
+  </li>
+<% end %>
+</ul>
+
+<h3>Incomplete To-do</h3>
+<ul>
+<% @incompleted_todos.each do |todo| %>
+  <li>
+    <a href="/todo/show/<%= todo.id%>"><%= todo.description%></a>
+    <span>Due: <%= todo.duedate.strftime("%A %B %d")%></span>
+  </li>
+<% end %>
+</ul>
 
 <h3>Completed To-do</h3>
 <ul>
@@ -43,4 +62,3 @@
 <% end %>
 </ul>
 
-<a href="/todo/new">Add a new To-do</a>
